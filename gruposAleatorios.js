@@ -1,11 +1,9 @@
 var nomes = ['beto', 'luxa', 'pinduca', 'marquinho', 'euzebio', 'joão', 'lila', 'nina', 'pri', 'alice', 'cleonice']
-const b = nomes.length
-const tamanhoDoGrupo = 5
-
-console.log(nomes.length)
+const tamanhoDoGrupo = 3
 
 function geraGrupos () {
     let grupo = []
+    let c = 1
 
     while(nomes != 0){
         if(nomes.length != 0){
@@ -17,9 +15,10 @@ function geraGrupos () {
         grupo.push(nomes[posicao])
         nomes.splice(posicao, 1)
         
-        if(grupo.length == 5 || nomes.length == 0){
-            console.log(grupo)
+        if(grupo.length == tamanhoDoGrupo || nomes.length == 0){
+            console.log(`grupo ${c}: ${grupo}`)
             grupo = []
+            c++
         }
         // console.log(`nomes = ${nomes.length}`)
     }
