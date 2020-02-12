@@ -4,29 +4,31 @@ const tamanhoDoGrupo = 5
 
 console.log(nomes.length)
 
-const imprimeGrupos = () => {
+function geraGrupos () {
     let grupo = []
 
-    for(let i = 0; i < nomes.length; i++){
-        let posicao = numeroAleatorio(0, nomes.length - i)
+    while(nomes != 0){
+        let posicao = numeroAleatorio(0, nomes.length)
 
-        if(nomes > 0) {
-            grupo.push(nomes[posicao])
-            nomes.pop(posicao)
-        }
+        grupo.push(nomes[posicao])
+        nomes.splice(posicao, 1)
+        
         if(grupo.length == 5 || nomes == 0){
             imprimeGrupo(grupo)
         }
+        console.log(`nomes = ${nomes.length}`)
     }
 }
 
 function numeroAleatorio(a = 0, b) {
     let n = Math.random() * (b - a) + a
 
-    return Math.ceil(n)
+    return Math.floor(n)
 }
 
 function imprimeGrupo(a) {
     console.log(a)
     a = []
 }
+
+geraGrupos()
