@@ -1,33 +1,36 @@
 var nomes = ['beto', 'luxa', 'pinduca', 'marquinho', 'euzebio', 'joão', 'lila', 'nina', 'pri', 'alice', 'cleonice']
-const tamanhoDoGrupo = 3
 
-function geraGrupos () {
+function geraGrupos (tamanhoDoGrupo) {
     let grupo = []
-    let c = 1
+    let numeroDoGrupo = 1
 
-    while(nomes != 0){
-        if(nomes.length != 0){
-        var posicao = numeroAleatorio(0, nomes.length)
-        }
-        else{
-            posicao = 0
-        }
-        grupo.push(nomes[posicao])
-        nomes.splice(posicao, 1)
+    while(nomes.length > 0) {
+        populaGrupo(nomes, grupo)
         
         if(grupo.length == tamanhoDoGrupo || nomes.length == 0){
-            console.log(`grupo ${c}: ${grupo}`)
-            grupo = []
-            c++
+            imprimeGrupo(grupo, ++numeroDoGrupo)
+            grupo.length = 0
         }
-        // console.log(`nomes = ${nomes.length}`)
     }
 }
 
-function numeroAleatorio(a = 0, b) {
-    let n = Math.random() * (b - a) + a
+function numeroAleatorio(min = 0, max) {
+    let nr = Math.random() * (max - min) + min
 
-    return Math.floor(n)
+    return Math.floor(nr)
 }
 
-geraGrupos()
+function populaGrupo(arrayNomes, arrayGrupo) {
+    let posicao = numeroAleatorio(0, arrayNomes.length)
+        
+        arrayGrupo.push(arrayNomes[posicao])
+        arrayNomes.splice(posicao, 1)
+    
+        return arrayNomes, arrayGrupo
+}
+
+function imprimeGrupo(arrayGrupo, contador){
+    console.log(`grupo ${contador}: ${arrayGrupo}`)
+}
+
+geraGrupos(3)
